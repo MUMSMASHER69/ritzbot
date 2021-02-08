@@ -1,3 +1,4 @@
-images/
 venv
 .vscode
+.log*
+token.json

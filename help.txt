@@ -2,5 +2,10 @@ vibin'
 Commands:
     !coinflip
 
+Rarities:
+    rare: 1 in 100 | 1%
+    epic: 1 in 1000 | 0.1%
+    legendary: 1 in 10000 | 0.01%
+
 Key words:
 {}

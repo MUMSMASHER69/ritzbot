@@ -1,38 +1,23 @@
 {
-  "token": "NzczNTE5MDcyMzU2MDczNDcy.X6KZxg.9ruXUyHjF8IFlCi6WXODUdsNKrw",
-  "ritz_price": 2.5,
+  "ritz_price": 3,
   "words": [
     { "word": "ritz","type": "link","content": ["vibin' https://www.youtube.com/watch?v=jslGE6p0nj4"]},
-    { "word": "poggers", "type": "image", "content": ["./images/poggers.png"] },
-    { "word": "pog", "type": "image", "content": ["./images/pog.png"] },
-    { "word": "pogchamp", "type": "image", "content": ["./images/pog.png"] },
-    { "word": "xqc", "type": "image", "content": ["./images/xQc.png"] },
-    { "word": "chad", "type": "link", "content": ["https://www.youtube.com/watch?v=vyufDxxWIsM"]},
-    { "word": "ps5", "type": "link", "content": ["https://www.youtube.com/watch?v=vyufDxxWIsM"]},
-    { "word": "gamer", "type": "image", "content": ["./images/gamer.jpg"] },
-    { "word": "lost", "type": "image", "content": ["./images/ilost.jpg"] },
-    { "word": "sunny", "type": "image", "content": ["./images/sunny.jpg", "./images/sunny1.png", "./images/sunny2.png"] },
-    { "word": "joe", "type": "image", "content": ["./images/joe.png"] },
-    { "word": "boomer", "type": "image", "content": ["./images/boomer.jpg"] },
-    { "word": "gay", "type": "image", "content": ["./images/couple.jpg"] },
-    { "word": "jatz", "type": "image", "content": ["./images/savoy.jpg"] },
-    { "word": "femboy", "type": "link", "content": ["https://imgur.com/a/LZljO"]},
-    { "word": "egg", "type": "image", "content": ["./images/egg.jpeg"]},
-    { "word": "swag", "type": "image", "content": ["./images/swag.jpg"]},
-    { "word": "floppa", "type": "image", "content": ["./images/floppa.png"]},
-    { "word": "savoy", "type": "image", "content": ["./images/savoy.jpg"]},
-    { "word": "short", "type": "image", "content": ["./images/sunny2.png"]},
+    { "word": "sunny", "type": "image", "content": ["sunny.jpg", "sunny1.png", "sunny2.png", "sunny3.jpg", "sunny4.jpg", "sunny.jpeg"] },
+    { "word": "boomer", "type": "image", "content": ["boomer.jpg", "beansold.jpg", "mick2.png"] },
+    { "word": "jatz", "type": "image", "content": ["savoy.jpg"] },
+    { "word": "swag", "type": "image", "content": ["swag.jpg", "swag2.jpg"]},
+    { "word": "floppa", "type": "image", "content": ["floppa.png"]},
+    { "word": "savoy", "type": "image", "content": ["savoy.jpg"]},
+    { "word": "short", "type": "link", "content": ["\"Insert sunny is short joke here\""]},
     { "word": "poo", "type": "link", "content": ["💩"]},
-    { "word": "mick", "type": "link", "content": ["💩"]},
-    { "word": "lawrence", "type": "image", "content": ["./images/pogu.jpg"]},
-    { "word": "darren", "type": "link", "content": ["https://imgur.com/a/LZljO"]},
-    { "word": "winston", "type": "image", "content": ["./images/winston.png"]},
-    { "word": "meme", "type": "image", "content": ["./images/cement.png"]},
-    { "word": "jesse", "type": "image", "content": ["./images/jesse2.jpg", "./images/jesse1.jpg", "./images/jesse3.jpg"]},
-    { "word": "biden", "type": "image", "content": ["./images/biden.png"]},
-    { "word": "trump", "type": "image", "content": ["./images/trump.mp4", "./images/trump.jpg"]},
-    { "word": "gold", "type": "image", "content": ["./images/gold.jpg"]},
+    { "word": "mick", "type": "image", "content": ["beansyung.webp"]},
+    { "word": "jesse", "type": "image", "content": ["jesse2.jpg", "jesse1.jpg", "jesse3.jpg"]},
     { "word": "bruh", "type": "link", "content": ["https://www.youtube.com/watch?v=2ZIpFytCSVc"]},
+    { "word": "yeezy", "type": "image", "content": ["kanye.gif", "kanye4.gif", "kanye3.gif"]},
+    { "word": "peter", "type": "image", "content": ["peter.png", "peter2.png"]},
+    { "word": "feet", "type": "link", "content": ["no"]},
+    { "word": "toe", "type": "link", "content": ["no"]},
+    { "word": "lmao", "type": "image", "content": ["lmao.jpg"]}
   ],
   "rare": [
     "jesse1.jpg",
@@ -45,10 +30,10 @@
     "edward.png",
     "cement.png"
   ],
-  "super_rare": [
+  "epic": [
     "what.jpg"
   ],
-  "ultra_rare": [
-    
+  "legendary": [
+    "heroin.gif"
   ]
 }
