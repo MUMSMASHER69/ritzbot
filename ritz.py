@@ -79,20 +79,25 @@ class MyClient(discord.Client):
             if ("btc" in message.content.lower()):
                 r = requests.get('https://api.btcmarkets.net/v3/markets/BTC-AUD/ticker')
                 rjson = r.json()
-                await message.channel.send("BTC price: ${} \nAsk: ${} \nBid: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"]))
+                await message.channel.send("BTC price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"]))
                 return
             elif ("ltc" in message.content.lower()):
                 r = requests.get('https://api.btcmarkets.net/v3/markets/LTC-AUD/ticker')
                 rjson = r.json()
-                await message.channel.send("LTC price: ${} \nAsk: ${} \nBid: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"]))
+                await message.channel.send("LTC price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"]))
                 return
             elif ("eth" in message.content.lower()):
                 r = requests.get('https://api.btcmarkets.net/v3/markets/ETH-AUD/ticker')
                 rjson = r.json()
-                await message.channel.send("ETH price: ${} \nAsk: ${} \nBid: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"]))
+                await message.channel.send("ETH price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"]))
+                return
+            elif ("xrp" in message.content.lower()):
+                r = requests.get('https://api.btcmarkets.net/v3/markets/XRP-AUD/ticker')
+                rjson = r.json()
+                await message.channel.send("XRP price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"]))
                 return
             else:
-                await message.channel.send("Example command is !crypto btc. Possible markets are btc, ltc and eth")
+                await message.channel.send("Example command is !crypto btc. Possible markets are btc, ltc, xrp and eth")
                 return
 
         # random
