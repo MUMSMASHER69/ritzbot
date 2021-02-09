@@ -5,6 +5,7 @@ import random
 from random import shuffle
 import logging
 import logging.config
+import requests
 
 logging.config.fileConfig(
     "./config/logger.ini", disable_existing_loggers=False
@@ -18,7 +19,7 @@ with open("config/token.json", 'r') as f:
     tokenfile = json.load(f)
     
 
-searchList = [    
+searchList = [
     r"\$(\d+\.?[0-9]?[0-9]?)",
     r"(\d+) [Dd]ollar[s]?",
     r"(\d+) [Bb]uck[s]?"
@@ -33,9 +34,6 @@ class MyClient(discord.Client):
         # exit is message is from self
         if (message.author == self.user):
             return
-
-        # if (str(message.author) == "cookedswag#5260"):
-        #     return
 
         # dollar to ritz conversion
         for i in searchList:
@@ -77,10 +75,31 @@ class MyClient(discord.Client):
             await message.channel.send("vibin'\n" + random.choice(chance))
             return
 
+        if ("!crypto" in message.content.lower()):
+            if ("btc" in message.content.lower()):
+                r = requests.get('https://api.btcmarkets.net/v3/markets/BTC-AUD/ticker')
+                rjson = r.json()
+                await message.channel.send("BTC price: ${} \nAsk: ${} \nBid: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"]))
+                return
+            elif ("ltc" in message.content.lower()):
+                r = requests.get('https://api.btcmarkets.net/v3/markets/LTC-AUD/ticker')
+                rjson = r.json()
+                await message.channel.send("LTC price: ${} \nAsk: ${} \nBid: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"]))
+                return
+            elif ("eth" in message.content.lower()):
+                r = requests.get('https://api.btcmarkets.net/v3/markets/ETH-AUD/ticker')
+                rjson = r.json()
+                await message.channel.send("ETH price: ${} \nAsk: ${} \nBid: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"]))
+                return
+            else:
+                await message.channel.send("Example command is !crypto btc. Possible markets are btc, ltc and eth")
+                return
+
         # random
         rare_num = random.randint(0,100)
         epic_num = random.randint(0, 1000)
         legendary_num = random.randint(0, 10000)
+        based = random.randint(0,100000)
         if (legendary_num == 69):
             logger.info("Legendary")
             choice = config["legendary"]
@@ -91,11 +110,8 @@ class MyClient(discord.Client):
             choice = config["epic"]
             await message.channel.send("Epic. What.", file=discord.File("./images/" + random.choice(choice)))
             return
-        # elif (rare_num == 69):
-        #     logger.info("Rare")
-        #     choice = config["rare"]
-        #     await message.channel.send("Rare.", file=discord.File("./images/" + random.choice(choice)))
-        #     return
+        elif (based == 69):
+            logger.info("based")
 
         # darren
         if (str(message.author) == "mckhira#3664"):
