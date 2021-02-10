@@ -76,25 +76,34 @@ class MyClient(discord.Client):
             return
 
         if ("!crypto" in message.content.lower()):
+            if ("all" in message.content.lower()):
+                markets = ["BTC-AUD", "LTC-AUD", "ETH-AUD", "XRP-AUD"]
+                sendStr = ""
+                for i in markets:
+                    r = requests.get('https://api.btcmarkets.net/v3/markets/{}/ticker'.format(i))
+                    rjson = r.json()
+                    sendStr += "{} price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${} \n24h change: {}% \n\n".format(i.split("-")[0] ,rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"], rjson["pricePct24h"])
+                await message.channel.send(sendStr)
+                return
             if ("btc" in message.content.lower()):
                 r = requests.get('https://api.btcmarkets.net/v3/markets/BTC-AUD/ticker')
                 rjson = r.json()
-                await message.channel.send("BTC price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"]))
+                await message.channel.send("BTC price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${} \n24h change: {}%".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"], rjson["pricePct24h"]))
                 return
             elif ("ltc" in message.content.lower()):
                 r = requests.get('https://api.btcmarkets.net/v3/markets/LTC-AUD/ticker')
                 rjson = r.json()
-                await message.channel.send("LTC price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"]))
+                await message.channel.send("LTC price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${} \n24h change: {}%".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"], rjson["pricePct24h"]))
                 return
             elif ("eth" in message.content.lower()):
                 r = requests.get('https://api.btcmarkets.net/v3/markets/ETH-AUD/ticker')
                 rjson = r.json()
-                await message.channel.send("ETH price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"]))
+                await message.channel.send("ETH price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${} \n24h change: {}%".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"], rjson["pricePct24h"]))
                 return
             elif ("xrp" in message.content.lower()):
                 r = requests.get('https://api.btcmarkets.net/v3/markets/XRP-AUD/ticker')
                 rjson = r.json()
-                await message.channel.send("XRP price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${}".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"]))
+                await message.channel.send("XRP price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${} \n24h change: {}%".format(rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"], rjson["pricePct24h"]))
                 return
             else:
                 await message.channel.send("Example command is !crypto btc. Possible markets are btc, ltc, xrp and eth")
