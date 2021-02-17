@@ -17,7 +17,15 @@
     { "word": "peter", "type": "image", "content": ["peter.png", "peter2.png"]},
     { "word": "feet", "type": "link", "content": ["no"]},
     { "word": "toe", "type": "link", "content": ["no"]},
-    { "word": "lmao", "type": "image", "content": ["lmao.jpg"]}
+    { "word": "lmao", "type": "image", "content": ["lmao.jpg"]},
+    { "word": "hungry", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "hunger", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "food", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "restaurant", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "eat", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "breakfast", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "lunch", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "dinner", "type": "image", "content": ["hungrysunny.png"]},
   ],
   "rare": [
     "jesse1.jpg",
