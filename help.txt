@@ -1,6 +1,9 @@
 vibin'
 Commands:
     !coinflip
+    !crypto e.g. !crypt btc
+    !stocks e.g. !stocks tsla
+    !asx e.g. !asx cba
 
 Rarities:
     rare: 1 in 100 | 1%
@@ -9,3 +12,4 @@ Rarities:
 
 Key words:
 {}
+
