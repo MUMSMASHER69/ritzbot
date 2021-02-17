@@ -34,8 +34,9 @@ class MyClient(discord.Client):
         if (message.author == self.user):
             return
 
-        # if (str(message.author) == "cookedswag#5260"):
-        #     return
+        if (str(message.author) == "cookedswag#5260"):
+            await message.channel.send("yes king")
+            return
 
         # dollar to ritz conversion
         for i in searchList:
