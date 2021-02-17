@@ -107,6 +107,11 @@ class MyClient(discord.Client):
                 if (num == 1):
                     await message.channel.send("Darren is gay", file=discord.File("./images/femboy.jpg"))
                     return
+        
+        #ya gay luke
+        if ("luke is gay" in message.content.lower()):
+            await message.channel.send("yes", file=discord.File("./images/femboy.jpg"))
+            return
 
 def loadConfig():
     with open("config/config.json", 'r') as f:
