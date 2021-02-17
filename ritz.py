@@ -6,6 +6,7 @@ from random import shuffle
 import logging
 import logging.config
 import requests
+#import numpy
 import yfinance as yf
 
 logging.config.fileConfig(
@@ -26,6 +27,35 @@ searchList = [
     r"(\d+) [Bb]uck[s]?"
 ]
 ritzprice = config["ritz_price"]
+
+"""
+class Game(object):
+    def __init__(self):
+        self.player1 = ""
+        self.player2 = ""
+        self.player3 = ""
+        self.player4 = ""
+        self.count = 0
+        
+        self.suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
+        self.cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+        
+        self.dec52 = []
+
+        for suit in self.suits:
+            for card in self.cards:
+                self.dec52.append(card + " of " + suit)
+        
+        
+    def game_cheat(self):
+        random.shuffle(self.dec52)
+        if self.count == 2:
+            self.player1_dec, self.player2_dec = numpy.array_split(self.52dec, 2)
+        elif self.count == 3:
+            self.player1_dec, self.player2_dec, self.player3_dec = numpy.array_split(self.52dec, 3)
+        else:
+            self.player1_dec, self.player2_dec, self.player3_dec, self.player4_dec = numpy.array_split(self.52dec, 4)
+"""
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -164,7 +194,54 @@ class MyClient(discord.Client):
                 if (num == 1):
                     await message.channel.send("Darren is gay")
                     return
+                
+        if (str(message.author) == "cookedswag#5260"):
+            swag_num = random.randint(0,10)
+            if (swag_num == 1):
+                await message.channel.send("The man has spoken.")
+            elif (swag_num == 2):
+                message.channel.send("The boss has spoken.")
+            elif (swag_num == 3):
+                await message.channel.send("The legend has spoken.")
+            return
 
+"""        
+        if (message.content.lower() == "!play cheat"):
+            if self.cheat.count == 0:
+                self.cheat = Game()
+                self.cheat.player1 = str(message.author)
+                self.cheat.count += 1   
+            else:
+                await message.channel.send("Game is currently running. Perform !join cheat to join the lobby.")
+
+        if (message.content.lower() == "!join cheat"):
+            if self.cheat.count == 0:
+                await message.channel.send("Game has not been started yet, perform !play cheat to start a game")
+            elif self.cheat.count == 1:
+                 self.cheat.player2 = str(message.author)
+                 self.cheat.count += 1
+                 await message.channel.send(self.cheat.player2 + " has joined the lobby game of cheat 2/4")
+            elif self.cheat.count == 2:
+                 self.cheat.player3 = str(message.author)
+                 self.cheat.count += 1
+                 await message.channel.send(self.cheat.player2 + " has joined the lobby game of cheat 3/4")
+            elif len(self.cheat.player4) == 3:
+                 self.cheat.player4 = str(message.author)
+                 self.cheat.count += 1
+                 await message.channel.send(self.cheat.player2 + " has joined the lobby game of cheat 4/4")
+            else:
+                 await message.channel.send("Full Lobby 4/4 with %s, %s, %s, %s" % (self.cheat.player1, self.cheat.player2, self.cheat.player3, self.cheat.player4))
+
+
+        if (message.content.lower() == "!start cheat"):
+            if (self.cheat.count >= 2):
+                await message.channel.send("Starting a game of BULLSHIT with " + str(self.cheat.count) + " players!")
+                self.cheat.game_cheat()
+            else:
+                await message.channel.send("Not enough players!")
+    
+"""   
+                
 def main():
     client = MyClient()
     client.run(tokenfile["token"])
