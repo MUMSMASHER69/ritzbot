@@ -66,14 +66,14 @@ class DiscordClient(discord.Client):
                     await message.channel.send("Darren is gay")
                     return
 
-        if (str(message.author) == "cookedswag#5260"):
-            swag_num = random.randint(0, 10)
-            if (swag_num == 1):
-                await message.channel.send("The man has spoken.")
-            elif (swag_num == 2):
-                message.channel.send("The boss has spoken.")
-            elif (swag_num == 3):
-                await message.channel.send("The legend has spoken.")
+        # if (str(message.author) == "cookedswag#5260"):
+        #     swag_num = random.randint(0, 10)
+        #     if (swag_num == 1):
+        #         await message.channel.send("The man has spoken.")
+        #     elif (swag_num == 2):
+        #         await message.channel.send("The boss has spoken.")
+        #     elif (swag_num == 3):
+        #         await message.channel.send("The legend has spoken.")
 
         # cheat game
         if (message.content.lower() == "!play cheat"):
