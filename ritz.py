@@ -35,7 +35,17 @@ class Game(object):
         self.player2 = ""
         self.player3 = ""
         self.player4 = ""
+        self.players = []
+        self.strplayers = []
+        self.player1_dec = []
+        self.player2_dec = []
+        self.player3_dec = []
+        self.player4_dec = []
+        self.hands = []
         self.count = 0
+        self.gamestatus = FALSE
+        self.playerturn = ""
+        self.playerturncount = 0
         
         self.suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
         self.cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
@@ -45,7 +55,7 @@ class Game(object):
         for suit in self.suits:
             for card in self.cards:
                 self.dec52.append(card + " of " + suit)
-        
+        return
         
     def game_cheat(self):
         random.shuffle(self.dec52)
@@ -55,11 +65,23 @@ class Game(object):
             self.player1_dec, self.player2_dec, self.player3_dec = numpy.array_split(self.52dec, 3)
         else:
             self.player1_dec, self.player2_dec, self.player3_dec, self.player4_dec = numpy.array_split(self.52dec, 4)
+        return
 """
 
 class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
+     
+    
+""""
+    async def dm_all(self, msg, authors):
+        for author in authors:
+            if author != "":
+                await author.send(msg)
+            return   
+        
+"""
+                
 
     async def on_message(self, message):
         # exit is message is from self
@@ -209,36 +231,83 @@ class MyClient(discord.Client):
         if (message.content.lower() == "!play cheat"):
             if self.cheat.count == 0:
                 self.cheat = Game()
-                self.cheat.player1 = str(message.author)
+                self.cheat.player1 = message.author
+                message.channel.send(str(self.cheat.player1) + " started a lobby of cheat.")
                 self.cheat.count += 1   
             else:
                 await message.channel.send("Game is currently running. Perform !join cheat to join the lobby.")
-
+            return
+            
         if (message.content.lower() == "!join cheat"):
             if self.cheat.count == 0:
                 await message.channel.send("Game has not been started yet, perform !play cheat to start a game")
             elif self.cheat.count == 1:
-                 self.cheat.player2 = str(message.author)
+                 self.cheat.player2 = message.author
                  self.cheat.count += 1
-                 await message.channel.send(self.cheat.player2 + " has joined the lobby game of cheat 2/4")
+                 await message.channel.send(str(self.cheat.player2) + " has joined the lobby game of cheat 2/4")
             elif self.cheat.count == 2:
-                 self.cheat.player3 = str(message.author)
+                 self.cheat.player3 = message.author
                  self.cheat.count += 1
-                 await message.channel.send(self.cheat.player2 + " has joined the lobby game of cheat 3/4")
-            elif len(self.cheat.player4) == 3:
-                 self.cheat.player4 = str(message.author)
+                 await message.channel.send(str(self.cheat.player3) + " has joined the lobby game of cheat 3/4")
+            elif self.cheat.count == 3:
+                 self.cheat.player4 = message.author
                  self.cheat.count += 1
-                 await message.channel.send(self.cheat.player2 + " has joined the lobby game of cheat 4/4")
+                 await message.channel.send(str(self.cheat.player4) + " has joined the lobby game of cheat 4/4")
             else:
-                 await message.channel.send("Full Lobby 4/4 with %s, %s, %s, %s" % (self.cheat.player1, self.cheat.player2, self.cheat.player3, self.cheat.player4))
-
+                 await message.channel.send("Full Lobby 4/4 with %s, %s, %s, %s" % (str(self.cheat.player1), str(self.cheat.player2), str(self.cheat.player3), str(self.cheat.player4)))
+            return
 
         if (message.content.lower() == "!start cheat"):
             if (self.cheat.count >= 2):
                 await message.channel.send("Starting a game of BULLSHIT with " + str(self.cheat.count) + " players!")
+                self.cheat.gamestatus = TRUE
                 self.cheat.game_cheat()
+                
+                self.cheat.players.append[self.cheat.player1]
+                self.cheat.players.append[self.cheat.player2] 
+                self.cheat.players.append[self.cheat.player3]
+                self.cheat.players.append[self.cheat.player4]
+                
+                self.cheat.strplayers.append[str(self.cheat.player1)]
+                self.cheat.strplayers.append[str(self.cheat.player2)] 
+                self.cheat.strplayers.append[str(self.cheat.player3)]
+                self.cheat.strplayers.append[str(self.cheat.player4)]
+                
+                self.cheat.hands.append[self.cheat.player1_dec]
+                self.cheat.hands.append[self.cheat.player2_dec]
+                self.cheat.hands.append[self.cheat.player3_dec]
+                self.cheat.hands.append[self.cheat.player4_dec]
+                
+                for player in range(0, self.cheat.count):
+                    await self.cheat.players[player].send(self.cheat.hands[player])
+                    
+                self.cheat.playerturn = self.cheat.strplayers[self.cheat.playerturncount]
+     
+                self.dm_all(self.cheat.playerturn + "'s turn!", self.cheat.players)
+                await message.channel.send(self.cheat.playerturn + "'s turn!")
+                self.cheat.playerturncount += 1
+                
             else:
                 await message.channel.send("Not enough players!")
+            return
+            
+        if (self.cheat.gamestatus and (str(message.author) in self.cheat.strplayers)):
+            if str(message.author) == self.cheat.playerturn:
+                self.cheat.playerturn = self.cheat.strplayers[self.cheat.playerturncount]
+                
+                self.dm_all(message.content.lower(), self.cheat.players)
+                await message.channel.send(message.content.lower())
+                
+                self.dm_all(self.cheat.playerturn + "'s turn!", self.cheat.players)
+                await message.channel.send(self.cheat.playerturn + "'s turn!")
+                
+                self.cheat.playerturncount += 1
+                if self.cheat.playerturncount == (self.cheat.count + 1):
+                    self.cheat.playerturncount = 0
+                    self.cheat.playerturn = self.cheat.strplayers[self.cheat.playerturncount]
+            else:
+                await message.author.send("Not your turn")
+            return
     
 """   
                 
