@@ -6,8 +6,9 @@ from random import shuffle
 import logging
 import logging.config
 import requests
-#import numpy
+import numpy
 import yfinance as yf
+import game
 
 logging.config.fileConfig(
     "./config/logger.ini", disable_existing_loggers=False
@@ -28,59 +29,60 @@ searchList = [
 ]
 ritzprice = config["ritz_price"]
 
-"""
-class Game(object):
-    def __init__(self):
-        self.player1 = ""
-        self.player2 = ""
-        self.player3 = ""
-        self.player4 = ""
-        self.players = []
-        self.strplayers = []
-        self.player1_dec = []
-        self.player2_dec = []
-        self.player3_dec = []
-        self.player4_dec = []
-        self.hands = []
-        self.count = 0
-        self.gamestatus = FALSE
-        self.playerturn = ""
-        self.playerturncount = 0
-        
-        self.suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
-        self.cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-        
-        self.dec52 = []
 
-        for suit in self.suits:
-            for card in self.cards:
-                self.dec52.append(card + " of " + suit)
-        return
+# class Game(object):
+#     def __init__(self):
+#         self.player1 = ""
+#         self.player2 = ""
+#         self.player3 = ""
+#         self.player4 = ""
+#         self.players = []
+#         self.strplayers = []
+#         self.player1_dec = []
+#         self.player2_dec = []
+#         self.player3_dec = []
+#         self.player4_dec = []
+#         self.hands = []
+#         self.count = 0
+#         self.gamestatus = FALSE
+#         self.playerturn = ""
+#         self.playerturncount = 0
         
-    def game_cheat(self):
-        random.shuffle(self.dec52)
-        if self.count == 2:
-            self.player1_dec, self.player2_dec = numpy.array_split(self.52dec, 2)
-        elif self.count == 3:
-            self.player1_dec, self.player2_dec, self.player3_dec = numpy.array_split(self.52dec, 3)
-        else:
-            self.player1_dec, self.player2_dec, self.player3_dec, self.player4_dec = numpy.array_split(self.52dec, 4)
-        return
-"""
+#         self.suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
+#         self.cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+        
+#         self.dec52 = []
+
+#         for suit in self.suits:
+#             for card in self.cards:
+#                 self.dec52.append(card + " of " + suit)
+#         return
+        
+#     def game_cheat(self):
+#         random.shuffle(self.dec52)
+#         if self.count == 2:
+#             self.player1_dec, self.player2_dec = numpy.array_split(self.dec52, 2)
+#         elif self.count == 3:
+#             self.player1_dec, self.player2_dec, self.player3_dec = numpy.array_split(self.52dec, 3)
+#         else:
+#             self.player1_dec, self.player2_dec, self.player3_dec, self.player4_dec = numpy.array_split(self.52dec, 4)
+#         return
+
 
 class MyClient(discord.Client):
+    def __init__(self):
+        self.cheat = ''
+
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
      
     
-""""
+
     async def dm_all(self, msg, authors):
         for author in authors:
             if author != "":
                 await author.send(msg)
             return   
-        
-"""
                 
 
     async def on_message(self, message):
@@ -110,7 +112,7 @@ class MyClient(discord.Client):
                 elif (i["type"] == "image"):
                     await message.channel.send(file=discord.File("./images/" + random.choice(i["content"])))
                     return
-
+        # help
         if ("!help" == message.content.lower()):
             words = ""
             wordList = config["words"]
@@ -123,11 +125,13 @@ class MyClient(discord.Client):
                 await message.channel.send(content)
             return
         
+        # coin flip
         if ("!coinflip" == message.content.lower()):
             chance = ["Heads", "Tails"]
             await message.channel.send("vibin'\n" + random.choice(chance))
             return
 
+        # crypto
         if ("!crypto" in message.content.lower()):
             if ("all" in message.content.lower()):
                 markets = ["BTC-AUD", "LTC-AUD", "ETH-AUD", "XRP-AUD"]
@@ -157,6 +161,7 @@ class MyClient(discord.Client):
             await message.channel.send("{} price: ${} \nAsk: ${} \nBid: ${} \n24h low: ${} \n24h high: ${} \n24h change: {}".format(rjson["marketId"], rjson["lastPrice"], rjson["bestAsk"], rjson["bestBid"], rjson["low24h"], rjson["high24h"], rjson["pricePct24h"]))
             return
 
+        # asx
         if (message.content.lower().startswith("!asx")):
             try:
                 ticker = yf.Ticker(message.content.lower().split(" ")[1].upper() + ".AX")
@@ -169,6 +174,7 @@ class MyClient(discord.Client):
                 await message.channel.send("Example command is !asx CBA. Possible markets are all in the ASX")
                 return
 
+        # stocks
         if (message.content.lower().startswith("!stocks")):
             try:
                 ticker = yf.Ticker(message.content.lower().split(" ")[1].upper())
@@ -188,7 +194,7 @@ class MyClient(discord.Client):
 
                 return
 
-        # random
+        # random images
         rare_num = random.randint(0,100)
         epic_num = random.randint(0, 1000)
         legendary_num = random.randint(0, 10000)
@@ -227,10 +233,10 @@ class MyClient(discord.Client):
                 await message.channel.send("The legend has spoken.")
             return
 
-"""        
+        # cheat game
         if (message.content.lower() == "!play cheat"):
-            if self.cheat.count == 0:
-                self.cheat = Game()
+            if self.cheat == '':
+                self.cheat = game.Game()
                 self.cheat.player1 = message.author
                 message.channel.send(str(self.cheat.player1) + " started a lobby of cheat.")
                 self.cheat.count += 1   
@@ -239,7 +245,7 @@ class MyClient(discord.Client):
             return
             
         if (message.content.lower() == "!join cheat"):
-            if self.cheat.count == 0:
+            if self.cheat == '':
                 await message.channel.send("Game has not been started yet, perform !play cheat to start a game")
             elif self.cheat.count == 1:
                  self.cheat.player2 = message.author
@@ -260,7 +266,7 @@ class MyClient(discord.Client):
         if (message.content.lower() == "!start cheat"):
             if (self.cheat.count >= 2):
                 await message.channel.send("Starting a game of BULLSHIT with " + str(self.cheat.count) + " players!")
-                self.cheat.gamestatus = TRUE
+                self.cheat.gamestatus = True
                 self.cheat.game_cheat()
                 
                 self.cheat.players.append[self.cheat.player1]
@@ -309,7 +315,7 @@ class MyClient(discord.Client):
                 await message.author.send("Not your turn")
             return
     
-"""   
+  
                 
 def main():
     client = MyClient()
