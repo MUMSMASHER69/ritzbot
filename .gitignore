@@ -2,3 +2,9 @@ venv
 .vscode
 .log*
 token.json
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
