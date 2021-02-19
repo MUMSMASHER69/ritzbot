@@ -1,0 +1,46 @@
+{
+  "ritz_price": 3,
+  "words": [
+    { "word": "ritz","type": "link","content": ["vibin' https://www.youtube.com/watch?v=jslGE6p0nj4"]},
+    { "word": "sunny", "type": "image", "content": ["sunny.jpg", "sunny1.png", "sunny2.png", "sunny3.jpg", "sunny4.jpg", "sunny.jpeg"] },
+    { "word": "boomer", "type": "image", "content": ["boomer.jpg", "beansold.jpg", "mick2.png"] },
+    { "word": "jatz", "type": "image", "content": ["savoy.jpg"] },
+    { "word": "swag", "type": "image", "content": ["swag.jpg", "swag2.jpg"]},
+    { "word": "floppa", "type": "image", "content": ["floppa.png"]},
+    { "word": "savoy", "type": "image", "content": ["savoy.jpg"]},
+    { "word": "short", "type": "link", "content": ["\"Insert sunny is short joke here\""]},
+    { "word": "poo", "type": "link", "content": ["💩"]},
+    { "word": "mick", "type": "image", "content": ["beansyung.webp"]},
+    { "word": "jesse", "type": "image", "content": ["jesse2.jpg", "jesse1.jpg", "jesse3.jpg"]},
+    { "word": "bruh", "type": "link", "content": ["https://www.youtube.com/watch?v=2ZIpFytCSVc"]},
+    { "word": "yeezy", "type": "image", "content": ["kanye.gif", "kanye4.gif", "kanye3.gif"]},
+    { "word": "peter", "type": "image", "content": ["peter.png", "peter2.png"]},
+    { "word": "feet", "type": "link", "content": ["no"]},
+    { "word": "toe", "type": "link", "content": ["no"]},
+    { "word": "lmao", "type": "image", "content": ["lmao.jpg"]},
+    { "word": "hungry", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "hunger", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "food", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "restaurant", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "breakfast", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "lunch", "type": "image", "content": ["hungrysunny.png"]},
+    { "word": "dinner", "type": "image", "content": ["hungrysunny.png"]}
+  ],
+  "rare": [
+    "jesse1.jpg",
+    "jesse2.jpg",
+    "jesse3.jpg",
+    "sunny1.png",
+    "sunny2.png",
+    "ritzcar.png",
+    "ritz.jpeg",
+    "edward.png",
+    "cement.png"
+  ],
+  "epic": [
+    "what.jpg"
+  ],
+  "legendary": [
+    "heroin.gif"
+  ]
+}
