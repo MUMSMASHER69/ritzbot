@@ -144,7 +144,7 @@ class Cheat():
                 self.playerturncount += 1
                 if (self.playerturncount == self.count):
                     self.playerturncount = 0
-                    self.playerturn = self.players[self.playerturncount]
+                    self.playerturn = self.players[self.playerturncount] #Don't need this line, it happens right after
                 self.playerturn = self.players[self.playerturncount]
 
                 logger.info(self.playerturncount)
