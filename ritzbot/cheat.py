@@ -50,6 +50,7 @@ class Cheat():
     async def init_game(self, message):
         logger.debug("init game")
         self.player1 = message.author
+        self.players.append(self.player1)
         logger.debug(self.player1)
         await message.channel.send(str(self.player1) + " started a lobby of cheat.")
         self.count += 1
@@ -63,14 +64,20 @@ class Cheat():
             await message.channel.send("Game has not been started yet, perform !play cheat to start a game")
         elif self.count == 1:
             self.player2 = message.author
+            # self.players.append(self.player2)
+            # self.strplayers.append(str(self.player2))
             self.count += 1
             await message.channel.send(str(self.player2) + " has joined the lobby game of cheat 2/4")
         elif self.count == 2:
             self.player3 = message.author
+            # self.players.append(self.player3)
+            # self.strplayers.append(str(self.player3))
             self.count += 1
             await message.channel.send(str(self.player3) + " has joined the lobby game of cheat 3/4")
         elif self.count == 3:
             self.player4 = message.author
+            # self.players.append(self.player4)
+            # self.strplayers.append(str(self.player4))
             self.count += 1
             await message.channel.send(str(self.player4) + " has joined the lobby game of cheat 4/4")
         else:
@@ -101,6 +108,13 @@ class Cheat():
         self.hands.append(self.player2_dec)
         self.hands.append(self.player3_dec)
         self.hands.append(self.player4_dec)
+
+        logger.info(self.strplayers)
+        for i in range(4-self.count):
+            self.players.pop()
+            self.strplayers.pop()
+            # self.hands.pop()
+        logger.info(self.strplayers)
         
         # dm each player their hand
         for player in range(0, self.count):
@@ -123,6 +137,7 @@ class Cheat():
         logger.debug("gameplay loop")
         if ((str(message.author) in self.strplayers) and self.gamestatus):
             if str(message.author) == str(self.playerturn):
+                logger.info(self.playerturncount)
                 self.playerturn = self.strplayers[self.playerturncount]
                 # self.playerturn = self.players[self.playerturncount]
                 
@@ -134,7 +149,7 @@ class Cheat():
                 logger.info(self.players)
                 
                 self.playerturncount += 1
-                if self.playerturncount == (self.count + 1):
+                if self.playerturncount == self.count:
                     self.playerturncount = 0
                     self.playerturn = self.strplayers[self.playerturncount]
             else:

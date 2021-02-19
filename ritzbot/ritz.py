@@ -74,7 +74,6 @@ class DiscordClient(discord.Client):
                 message.channel.send("The boss has spoken.")
             elif (swag_num == 3):
                 await message.channel.send("The legend has spoken.")
-            return
 
         # cheat game
         if (message.content.lower() == "!play cheat"):

@@ -7,6 +7,6 @@ sudo docker build -t ritzbot .
 
 sudo docker run \
 --name ritz \
---mount type=bind,source=/home/luke/projects/discordbot/logs,target=/usr/src/app/logs/ \
+--mount type=bind,source=/home/luke/projects/discordbot/ritzbot/logs,target=/usr/src/app/logs/ \
 --restart=always \
 ritzbot
